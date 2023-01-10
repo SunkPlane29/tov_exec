@@ -27,7 +27,7 @@ function main()
 
     eos = remove_negative_slopes(eos)
 
-    g = plot(eos.ϵ, eos.p, label = false, xaxis = "ϵ (MeV/fm³)", yaxis = "p (MeV/fm³)")
+    g = plot(eos.ϵ, eos.p, label = false, xaxis = "ϵ (MeV/fm³)", yaxis = "p (MeV/fm³)", show = false)
     savefig(g, "eosplot.png")
 
     pressure = eos.p .* MEVFM3_TO_MEV4 .* MEV4_TO_JOULE .* SI_TO_PRESSURE_UNIT
@@ -48,7 +48,7 @@ function main()
         end
     end
 
-    p = plot(radius, mass, label = false, xaxis = "radius (km)", yaxis = raw"mass (M$_{\odot}$)")
+    p = plot(radius, mass, label = false, xaxis = "radius (km)", yaxis = raw"mass (M$_{\odot}$)", show = false)
 
     savefig(p, "mrdiagram.png")
 end

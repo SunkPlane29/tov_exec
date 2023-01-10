@@ -11,6 +11,8 @@ If you wish to use CompOSE:
 - GNU make utility (or any other make utility)
 - gfortran compiler
 
+(you can install the gfortran compiler in the container with: `sudo apt-get update && sudo apt-get install gfortran make`)
+
 You need to have a datafile containing the EOS in eos/eos.table (data in fortran format). #TODO: write something about the column format (issue about temperature, baryon number density and baryon charge fraction).
 
 After having all of the requirements you can simply initialize the julia REPL with: `$ julia`. The TOV solving code uses all threads available if possible, so if you want to use all threads you need to initialize the REPL with: `$ julia --threads auto`, or if you want a specific number of threads: `$julia --threads NTHREADS`.

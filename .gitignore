@@ -11,3 +11,5 @@ htmlcov
 *.csv
 *.png
 eos.*
+compose/
+eos/
