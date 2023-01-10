@@ -21,9 +21,13 @@ function remove_negative_slopes(eos::DataFrame)::DataFrame
     return new_eos
 end
 
-function main()
+compose = ["T", "n_b", "Y_q", "p", "ϵ"]
+reduced = ["p", "ϵ"]
+
+function main(header::Vector{String} = compose)
     file = dat2csv("eos/eos.table")
-    eos = CSV.File(file, header = ["T", "n_b", "Y_q", "p", "ϵ"]) |> DataFrame
+ 
+    eos = CSV.File(file, header = header) |> DataFrame
 
     eos = remove_negative_slopes(eos)
 
