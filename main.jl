@@ -22,7 +22,7 @@ function remove_negative_slopes(eos::DataFrame)::DataFrame
 end
 
 function main()
-    file = dat2csv("eos.table")
+    file = dat2csv("eos/eos.table")
     eos = CSV.File(file, header = ["T", "n_b", "Y_q", "p", "ϵ"]) |> DataFrame
 
     eos = remove_negative_slopes(eos)
