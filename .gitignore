@@ -13,3 +13,6 @@ htmlcov
 eos.*
 compose/
 eos/
+
+*.so
+*.o

@@ -40,7 +40,7 @@ function main(header::Vector{String} = compose)
     eos_interp = linear_interpolation(pressure, energy_density)
     eos(p) = eos_interp(p)
 
-    curve = solve_mrdiagram(pressure[1], last(pressure), eos, stepsize = 1*SI_TO_LENGTH_UNIT)
+    curve = solve_mrdiagram(pressure[1], last(pressure), eos, stepsize = 1*SI_TO_LENGTH_UNIT, nstars = 1000)
 
     radius = []
     mass = []
