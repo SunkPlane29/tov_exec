@@ -26,10 +26,26 @@ And run the code with `main()`.
 The workflow should be like, starting from bash:
 
 ```
-$ julia --threads auto
-julia>
-(@v1.8) pkg> initialize .
-(@v1.8) pkg> instantiate
+$ julia --threads auto --project=.
 julia>include("main.jl")
 julia>main()
 ```
+
+or, you could also run in a non-interactive way:
+
+```
+$ julia --threads auto --project=. run_tov.jl (compose/reduced)
+```
+
+where the argument compose or the argument reduced specify the model of the equation of state:
+compose equation of state will have the columns: 
+
+`[Temperature] [Baryon number density] [Hadronic charge fraction] [Pressure] [Energy density]`
+
+and the reduced equation of state will only have the columns: 
+
+`[Pressure] [Energy density]`
+
+## Contact
+
+Any doubts you can email me: andre-silva.as@acad.usfm.br

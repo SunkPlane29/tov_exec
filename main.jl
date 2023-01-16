@@ -38,17 +38,18 @@ function main(header::Vector{String} = compose)
     g = plot(eos.ϵ, eos.p, label = false, xaxis = "ϵ (MeV/fm³)", yaxis = "p (MeV/fm³)", show = false)
     savefig(g, "eosplot.png")
 
-    pressure = eos.p .* MEVFM3_TO_MEV4 .* MEV4_TO_JOULE .* SI_TO_PRESSURE_UNIT
-    energy_density = eos.ϵ .* MEVFM3_TO_MEV4 .* MEV4_TO_JOULE .* SI_TO_PRESSURE_UNIT
+    pressure = eos.p .* MEVFM3_TO_PRESSURE_UNIT
+    energy_density = eos.ϵ .* MEVFM3_TO_PRESSURE_UNIT
 
     eos_interp = linear_interpolation(pressure, energy_density)
     eos(p) = eos_interp(p)
 
-    curve = solve_mrdiagram(pressure[1], last(pressure), eos, stepsize = 1*SI_TO_LENGTH_UNIT)
+    curve = solve_mrdiagram(pressure[1], last(pressure), eos, stepsize = 1*SI_TO_LENGTH_UNIT, nstars = 1000)
 
     radius = []
     mass = []
 
+    #FIXME: for some reason the first radius and mass will be a really small number?
     for (i, r) in enumerate(curve.xvalues)
         if i ≢ 1 && r < 17
             append!(radius, r)
