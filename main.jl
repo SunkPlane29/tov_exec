@@ -4,6 +4,10 @@ using DataFrames
 using Interpolations
 using Plots
 
+#set only png output
+using GR
+GR.inline("png")
+
 function remove_negative_slopes(eos::DataFrame)::DataFrame
     new_eos = DataFrame()
     new_eos.p = Vector{Float64}()
