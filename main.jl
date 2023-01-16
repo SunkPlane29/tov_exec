@@ -2,11 +2,12 @@ using TOV
 using CSV
 using DataFrames
 using Interpolations
-using Plots
 
 #set only png output
 using GR
 GR.inline("png")
+
+using Plots
 
 function remove_negative_slopes(eos::DataFrame)::DataFrame
     new_eos = DataFrame()
@@ -35,8 +36,8 @@ function main(header::Vector{String} = compose)
 
     eos = remove_negative_slopes(eos)
 
-    g = plot(eos.ϵ, eos.p, label = false, xaxis = "ϵ (MeV/fm³)", yaxis = "p (MeV/fm³)", show = false)
-    savefig(g, "eosplot.png")
+    g = Plots.plot(eos.ϵ, eos.p, label = false, xaxis = "ϵ (MeV/fm³)", yaxis = "p (MeV/fm³)", show = false)
+    Plots.savefig(g, "eosplot.png")
 
     pressure = eos.p .* MEVFM3_TO_PRESSURE_UNIT
     energy_density = eos.ϵ .* MEVFM3_TO_PRESSURE_UNIT
@@ -57,7 +58,7 @@ function main(header::Vector{String} = compose)
         end
     end
 
-    p = plot(radius, mass, label = false, xaxis = "radius (km)", yaxis = raw"mass (M$_{\odot}$)", show = false)
+    p = Plots.plot(radius, mass, label = false, xaxis = "radius (km)", yaxis = raw"mass (M$_{\odot}$)", show = false)
 
-    savefig(p, "mrdiagram.png")
+    Plots.savefig(p, "mrdiagram.png")
 end
